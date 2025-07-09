@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Sameer's Portfolio{% endblock %}</title>
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans text-white bg-gray-900">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between p-6 bg-gray-800 shadow-md">
+    <a href="{% url 'home' %}" class="text-2xl font-bold text-teal-400">Sameer</a>
+    <ul class="flex space-x-6 text-white">
+      <li><a href="{% url 'home' %}" class="hover:text-teal-400">Home</a></li>
+      <li><a href="{% url 'about' %}" class="hover:text-teal-400">About</a></li>
+      <li><a href="{% url 'contact' %}" class="hover:text-teal-400">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-4 text-gray-500 text-sm">
+    © {{ now|date:"Y" }} Sameer. Built with Django + Tailwind CSS.
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 300 });
+  </script>
+
+  <!-- Only ONE instance of this block! -->
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>
