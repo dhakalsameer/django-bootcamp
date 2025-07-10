@@ -2,7 +2,7 @@
 {% block title %}Contact - Sameer{% endblock %}
 
 {% block content %}
-<section class="px-6 md:px-20 py-20 bg-gray-800 text-white text-center max-w-xl mx-auto" data-aos="fade-up">
+<!-- <section class="px-6 md:px-20 py-20 bg-gray-800 text-white text-center max-w-xl mx-auto" data-aos="fade-up">
     <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
     <p class="text-gray-300 mb-6">Feel free to contact me for freelance work, collaborations, or just to say hi 👋</p>
     <form method="POST" action="">
@@ -15,5 +15,37 @@
             class="w-full p-3 rounded bg-gray-700 text-white mb-6"></textarea>
         <button type="submit" class="bg-teal-500 hover:bg-teal-600 px-6 py-2 rounded text-white">Send</button>
     </form>
+</section> -->
+<section class="px-6 md:px-20 py-20 bg-gray-900 text-white text-center max-w-4xl mx-auto" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-6">Employee List</h2>
+
+    <div class="overflow-x-auto shadow-lg rounded-lg">
+        <table class="min-w-full divide-y divide-gray-700">
+            <thead class="bg-gray-800 text-gray-200">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium">#</th>
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium">Name</th>
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium">Email</th>
+                    <th scope="col" class="px-6 py-3 text-left text-sm font-medium">Phone</th>
+                </tr>
+            </thead>
+            <tbody class="bg-gray-700 divide-y divide-gray-600 text-gray-100">
+                {% for i in employee %}
+                <tr class="hover:bg-gray-600 transition">
+                    <td class="px-6 py-4 whitespace-nowrap">{{ forloop.counter }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="{% url 'employee_details' i.id %}">{{ i.first_name }} {{ i.last_name }}</a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ i.email }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ i.phone }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="px-6 py-4 text-center text-red-400">No employees found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 {% endblock %}
